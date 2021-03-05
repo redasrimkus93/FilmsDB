@@ -8,16 +8,22 @@ interface Props {
     selectMovie: (id: string) => void;
     deleteMovie: (id: string) => void;
 }
+
+
 export default function MovieList({ movies, searchInput, selectMovie, deleteMovie }: Props) {
 
     return (
         <Segment>
             <Item.Group divided>
+
                 {movies.filter(movie => {
-                    if (searchInput === "") {
+                    if (searchInput === "" || movie.title.toLowerCase().includes(searchInput.toLowerCase())
+                        || movie.category.toLowerCase().includes(searchInput.toLowerCase())
+                        || movie.date.toLowerCase().includes(searchInput.toLowerCase())
+                    ) {
                         return movie;
-                    } else if (movie.title.toLowerCase().includes(searchInput.toLowerCase())) {
-                        return movie;
+                    } else {
+                        return 0;
                     }
                 }).map(movie => (
                     <Item key={movie.id}>
@@ -41,6 +47,6 @@ export default function MovieList({ movies, searchInput, selectMovie, deleteMovi
                 ))}
             </Item.Group>
         </Segment>
-    
+
     )
 }
