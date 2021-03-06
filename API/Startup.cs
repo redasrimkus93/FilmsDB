@@ -15,9 +15,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Persistence;
 using Application.Core;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Data;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace API
 {
@@ -39,18 +38,18 @@ namespace API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
             });
-            services.AddDbContext<DataContext>(opt =>
+
+            services.AddDbContext<DataContext>(options =>
+     options.UseSqlServer(_config.GetConnectionString("DefaultConnection")));
+
+            services.AddCors(opt =>
             {
-                opt.UseSqlite(_config.GetConnectionString("DefaultConnection"));
-            });
-            services.AddCors(opt => 
-            {
-                opt.AddPolicy("CorsPolicy", policy => 
+                opt.AddPolicy("CorsPolicy", policy =>
                 {
                     policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000");
                 });
             });
-            services.AddMediatR(typeof(List.Handler).Assembly); 
+            services.AddMediatR(typeof(List.Handler).Assembly);
             services.AddAutoMapper(typeof(MappingProfiles).Assembly);
         }
 

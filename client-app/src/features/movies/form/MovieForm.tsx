@@ -16,7 +16,7 @@ export default function MovieForm({ movie: selectedMovie, closeForm, createOrEdi
         category: '',
         description: '',
         date: '',
-        actor: ''
+        actors: ''
     }
 
     const [movie, setMovie] = useState(initialState);
@@ -25,7 +25,7 @@ export default function MovieForm({ movie: selectedMovie, closeForm, createOrEdi
         !movie.category?.length ||
         !movie.date?.length ||
         !movie.description?.length ||
-        !movie.actor?.length;
+        !movie.actors?.length;
 
     function handleSubmit() {
         createOrEdit(movie)
@@ -43,7 +43,7 @@ export default function MovieForm({ movie: selectedMovie, closeForm, createOrEdi
                 <Form.TextArea placeholder='Description' value={movie.description} name='description' onChange={handleInputChange} />
                 <Form.Input placeholder='Category' value={movie.category} name='category' onChange={handleInputChange} />
                 <Form.Input type='date' placeholder='Date' value={movie.date} name='date' onChange={handleInputChange} />
-                <Form.Input placeholder='Actor' value={movie.actor} name='actor' onChange={handleInputChange} />
+                <Form.Input placeholder='Actors' value={movie.actors} name='actors' onChange={handleInputChange} />
                 <Button floated='right' disabled={formValidation} positive type='submit' content='Submit' />
                 <Button onClick={closeForm} floated='right' type='button' content='Cancel' />
 

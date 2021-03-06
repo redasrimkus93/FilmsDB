@@ -34,7 +34,7 @@ export default function MovieList({ movies, searchInput, selectMovie, deleteMovi
                             <Item.Meta>{movie.date}</Item.Meta>
                             <Item.Description>
                                 <div>{movie.description}</div>
-                                <div>{movie.actor}</div>
+                                <div>{movie.actors}</div>
                             </Item.Description>
                             <Item.Extra>
                                 <Button onClick={() => selectMovie(movie.id)} floated='right' content='View' color='blue' />

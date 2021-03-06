@@ -9,6 +9,6 @@ namespace Domain
         public DateTime Date { get; set; }
         public string Description { get; set; }
         public string Category { get; set; }
-        public string Actor { get; set; }
+        public string Actors { get; set; }
     }
 }

@@ -4,5 +4,5 @@ export interface Movie {
     date: string;
     description: string;
     category: string;
-    actor: string;
+    actors: string;
   }
